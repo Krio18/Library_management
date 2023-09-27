@@ -1,4 +1,16 @@
 #
+Titre:Harry potter
+AuteurFirstName:Joanne
+AuteurLastName:Rowling
+AuteurBirthDay:31/07/1965 00:00:00
+ISBN:2070541274
+#
+Titre:Alice au pays des merveilles
+AuteurFirstName:Lewis
+AuteurLastName:Carroll
+AuteurBirthDay:14/01/1832 00:00:00
+ISBN:9780194229647
+#
 Titre:L'appel de cthulhu
 AuteurFirstName:Howard Phillips
 AuteurLastName:Lovecraft

@@ -1,0 +1,6 @@
+#
+Titre:L'appel de cthulhu
+AuteurFirstName:Howard Phillips
+AuteurLastName:Lovecraft
+AuteurBirthDay:20/08/1890 00:00:00
+ISBN:9781568820149

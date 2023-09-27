@@ -37,7 +37,7 @@ namespace ClassLibrary
 
         private void _CollectData()
         {
-            string[] lines = File.ReadAllLines("../../../Data.txt");
+            string[] lines = File.ReadAllLines("../../../src/Data.txt");
             int j;
             string title = "";
             string firstName = "";
@@ -62,7 +62,7 @@ namespace ClassLibrary
                     isbn = lines[i].Substring(j + 1);
             }
             Author author = new Author(firstName, lastName, dateOfBirth);
-            File.WriteAllText("../../../Data.txt", "");
+            File.WriteAllText("../../../src/Data.txt", "");
             AddBook(title, author, isbn);
             //----------Correct multiple books save
         }

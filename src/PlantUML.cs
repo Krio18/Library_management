@@ -57,10 +57,10 @@ namespace ClassPlantUML
             var renderer = factory.CreateRenderer(new PlantUmlSettings());
 
             var mainBytes = await renderer.RenderAsync(codePlantUML, OutputFormat.Svg);
-            File.WriteAllBytes("../../../ClassDiagram/mainDiagram.svg", mainBytes);
+            File.WriteAllBytes("../../../src/ClassDiagram/mainDiagram.svg", mainBytes);
 
             var bytes = await renderer.RenderAsync(link.PlantUMLHypertext(), OutputFormat.Svg);
-            File.WriteAllBytes("../../../ClassDiagram/secondPart.svg", bytes);
+            File.WriteAllBytes("../../../src/ClassDiagram/secondPart.svg", bytes);
         }
     }
 }
