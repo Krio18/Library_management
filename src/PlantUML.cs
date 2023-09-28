@@ -37,7 +37,7 @@ namespace ClassPlantUML
             }
             codePlantUML.Append(@"@enduml");
 
-            Console.WriteLine(codePlantUML);
+            //Console.WriteLine(codePlantUML); //----> Display code PlantUML
             _ = _CreateSVGFiles(codePlantUML.ToString());
         }
 

@@ -1,5 +1,6 @@
 ﻿using ClassAuthor;
 using ClassBook;
+using ClassDigitalBook;
 
 namespace ClassLibrary
 {
@@ -8,20 +9,10 @@ namespace ClassLibrary
         public Library()
         {
             Books = new List<Book>();
-            _CollectData();
+            _CollectData(Books);
         }
 
         public List<Book> Books { get; set; }
-        public void DisplayBooks()
-		{
-			foreach (Book bookItem in Books)
-			{
-				Console.WriteLine($"Titre du livre : {bookItem.Title}");
-                Console.WriteLine($"\tAuthor : {bookItem.Author.FirstName} {bookItem.Author.LastName}");
-                Console.WriteLine($"\tISBN : {bookItem.ISBN}");
-            }
-            Console.WriteLine("");
-		}
         private void _RegisterData(string title, Author author, string isbn)
         {
             string newDataLine = $"#\nTitre:{title}\nAuteurFirstName:{author.FirstName}\nAuteurLastName:{author.LastName}\nAuteurBirthDay:{author.DateOfBirth}\nISBN:{isbn}";
@@ -35,7 +26,7 @@ namespace ClassLibrary
             return dateTime;
         }
 
-        private void _CollectData()
+        private void _CollectData(List<Book> books)
         {
             string[] lines = File.ReadAllLines("../../../src/Data.txt");
             int j;
@@ -60,12 +51,35 @@ namespace ClassLibrary
                     dateOfBirth = _ConvertStringInDate(lines[i].Substring(j + 1));
                 if (lines[i][..j] == "ISBN")
                     isbn = lines[i].Substring(j + 1);
+                if (i % 5 == 0 && i > 0) //------------------------------------------------------------------
+                {
+                    Author author = new(firstName, lastName, dateOfBirth);
+                    Book newBook = new()
+                    {
+                        Title = title,
+                        Author = author, //         Fonction a moité.
+                        ISBN = isbn,
+                    };
+                    books.Add(newBook);
+                } //-----------------------------------------------------------------------------------------
             }
-            Author author = new Author(firstName, lastName, dateOfBirth);
             File.WriteAllText("../../../src/Data.txt", "");
-            AddBook(title, author, isbn);
-            //----------Correct multiple books save
+            foreach (var book in books)
+            {
+                _RegisterData(book.Title, book.Author, book.ISBN);
+            }
         }
+
+        public void DisplayBooks()
+		{
+			foreach (Book bookItem in Books)
+			{
+				Console.WriteLine($"Titre du livre : {bookItem.Title}");
+                Console.WriteLine($"\tAuthor : {bookItem.Author.FirstName} {bookItem.Author.LastName}");
+                Console.WriteLine($"\tISBN : {bookItem.ISBN}");
+            }
+            Console.WriteLine("");
+		}
 
         public void SearchAuthor(string author)
         {
@@ -136,14 +150,14 @@ namespace ClassLibrary
 
         public void AddBook(string title, Author author, string isbn)
 		{
-			if (Books.Any(books => books.ISBN.Equals(isbn)))
+            if (Books.Any(books => books.ISBN.Equals(isbn)))
 				throw new InvalidOperationException("Le code ISBN existe déjà.");
 			Book newBook = new Book()
 			{
 				Title = title,
 				Author = author,
-				ISBN = isbn
-			};
+				ISBN = isbn,
+            };
             Books.Add(newBook);
             _RegisterData(title, author, isbn);
         }

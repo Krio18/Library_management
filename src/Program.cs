@@ -2,7 +2,6 @@
 using ClassBook;
 using ClassDigitalBook;
 using ClassLibrary;
-using ClassPlantUML;
 
 namespace ClassLibrary_management
 {
