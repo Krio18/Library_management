@@ -26,7 +26,7 @@ namespace ClassLibrary
         {
             string newDataLine = $"#\nTitre:{title}\nAuteurFirstName:{author.FirstName}\nAuteurLastName:{author.LastName}\nAuteurBirthDay:{author.DateOfBirth}\nISBN:{isbn}";
             
-            File.AppendAllText("../../../Data.txt", newDataLine + Environment.NewLine);
+            File.AppendAllText("../../../src/Data.txt", newDataLine + Environment.NewLine);
 
         }
         private DateTime _ConvertStringInDate(string date)
