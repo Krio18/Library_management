@@ -2,13 +2,15 @@
 using ClassBook;
 using ClassDigitalBook;
 using ClassLibrary;
+using ClassPlantUML;
 
 namespace ClassLibrary_management
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
+            ClassPlantUML.PlantUML plantUMLGenerator = new();
             Library library = new();
             Author author1 = new("Lewis", "Carroll", new DateTime(1832, 1, 14));
             Author author2 = new("Joanne", "Rowling", new DateTime(1965, 7, 31));
@@ -40,7 +42,7 @@ namespace ClassLibrary_management
                 //library.SearchAuthor("");
                 //library.AddBook("Harry potter", author2, "2070541274");
                 //library.SearchBook("");
-                await ClassPlantUML.PlantUML.GeneratePlantUml();
+                plantUMLGenerator.GeneratePlantUml();
 
             }
             catch (ArgumentException ex)
